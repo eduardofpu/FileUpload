@@ -1,0 +1,74 @@
+
+<div>
+  <button type="button" ng-hide="showAddEditformulario" ng-click="show()">
+    Novo Formulário
+  </button>
+
+
+  <!--<a href="http://localhost:8080/api/private/jasperform">Relatório de Formulário</a></li>-->
+  ID DA IMAGEM:
+  <div>
+  <input type="text" placeholder="Pesquisar" ng-model="fileupload.id" ><!-- Tras o id da foto-->
+  </div>
+
+
+  <form name="theForm" class="form-horizontal" novalidate  ng-submit="saveFile(fileupload)" ng-hide="!showAddEditformulario">
+
+
+
+     Selecione uma Imagem:
+
+        <input type="file" ng-model="fileupload.file" accept="image/*" multiple app-filereader ng-change="updateLinkImage(fileupload.file[0])" />
+                <br />
+
+           <img ng-src="{{fileupload.mimeType}},{{fileupload.file}}" width="400" />
+               <br />
+
+
+                     <div>
+                    <input type="text" placeholder="Nome Image" ng-model="fileupload.image" >
+                 </div>
+
+                 <div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+              <button type="reset" ng-click="hideCadCliente()" class="btn btn-danger">Limpar o nome</button>
+           </div>
+
+
+  </form>
+
+
+<!--<pre >{{fileupload | json}}</pre>-->
+
+
+
+
+  <div>
+    <br/><h3>ARQUIVOS IMG</h3>
+    <table>
+      <thead>
+        <tr>
+
+          <th>MIMETYPE</th>
+            <th>NOME IMAGE TESTE</th>
+
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="fileupload in fileuploads">
+
+          <td>{{ fileupload.mimeType }}</td>
+            <td>{{ fileupload.image }}</td>
+
+          <td><button ng-click="editFile(fileupload)">Editar</button></td>
+          <td><button ng-click="deleteFile(fileupload)">Deletar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  </div>

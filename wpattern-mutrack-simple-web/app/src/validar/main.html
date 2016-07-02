@@ -1,0 +1,150 @@
+
+<div>
+  <button type="button" ng-hide="showAddEditformulario" ng-click="show()">
+    Novo Formulário
+  </button>
+  <button type="submit" ng-click="relatorioformulario()"
+    class="btn btn-default">
+    Relatório de Formulário
+  </button>
+
+  <!--<a href="http://localhost:8080/api/private/jasperform">Relatório de Formulário</a></li>-->
+
+
+  <form name="theForm" class="form-horizontal" novalidate  ng-submit="saveformulario(formulario)" ng-hide="!showAddEditformulario">
+
+
+    <div class="form-group" ng-class="{'has-error': theForm.email.$touched && theForm.email.$error.required || theForm.email.$error.minlength, 'has-success':theForm.email.$valid}">
+      <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input ng-minlength=15 name="email"
+        required   ng-model="formulario.email"
+        type="email" class="form-control" id="inputEmail3" placeholder="Email" >
+
+        <span ng-show="theForm.email.$touched && theForm.email.$error.required" class="label label-danger">Ex: nome@gmail.com</span>
+        <span ng-show="theForm.email.$touched && theForm.email.$error.minlength" class="label label-danger">
+               me@example.com
+
+
+
+      </div>
+    </div>
+
+
+
+    <div class="form-group"
+    ng-class="{'has-error': theForm.nome.$touched && (theForm.nome.$error.required || theForm.nome.$error.minlength) , 'has-success':theForm.nome.$valid}">
+      <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+      <div class="col-sm-10">
+        <input required ng-minlength=10 name="nome"  ng-model="formulario.name" type="text" class="form-control" placeholder="Nome" id="inputNome">
+        <span ng-show="theForm.nome.$touched && theForm.nome.$error.required" class="label label-danger">Campo requerido</span>
+        <span ng-show="theForm.nome.$touched && theForm.nome.$error.minlength" class="label label-danger">
+          Minimo 10 letras: faltam {{10 - theForm.nome.$viewValue.length}}</span>
+      </div>
+    </div>
+
+
+    <div class="form-group"
+    ng-class="{'has-error': theForm.idade.$touched && (theForm.idade.$error.required || theForm.idade.$error.min) , 'has-success':theForm.idade.$valid}">
+      <label for="inputIdade" class="col-sm-2 control-label">Idade</label>
+
+
+      <div class="col-sm-10">
+        <input required ng-min=18 name="idade"   ng-model="formulario.idade" type="number"
+        class="form-control" placeholder="Idade" id="inputIdade"  required>
+        <span ng-show="theForm.idade.$touched && theForm.idade.$error.required" class="label label-danger">Idade requerida</span>
+        <span ng-show="theForm.idade.$touched && theForm.idade.$error.min" class="label label-danger">
+          Idade Mínima 18 anos</span>
+      </div>
+    </div>
+
+
+    <div class="form-group"
+    ng-class="{'has-error': theForm.celular.$touched && (theForm.celular.$error.required || theForm.celular.$error.minlength) , 'has-success':theForm.celular.$valid}">
+      <label for="inputCelular" class="col-sm-2 control-label">Senha</label>
+      <div class="col-sm-10">
+
+        <input required ng-minlength=8 name="celular" ng-model="formulario.senha" id="inputCelular"
+        type="password" class="form-control" placeholder="******" maxlength="8">
+
+
+        <span ng-show="theForm.celular.$touched && theForm.celular.$error.required" class="label label-danger">Ex: ******</span>
+        <span ng-show="theForm.celular.$touched && theForm.celular.$error.minlength" class="label label-danger">
+          *Digite 8 números Ex: ********</span>
+      </div>
+    </div>
+
+
+    <div>
+
+      <label>Sexo:
+      <select  name="sex" ng-model="formulario.sex" type="list" class="form-control" placeholder="sex" id="inputsex">
+      <option value="M" ng-selected="sex=='M'">Masculino</option>
+      <option value="F" ng-selected="sex=='F'">Feminino</option>
+      </select>
+      Escolhida foi:{{sex}}
+      </label>
+</div>
+
+
+
+
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Salvar</button>
+         <button type="button" ng-click="hide()">Cancelar</button>
+
+
+      </div>
+    </div>
+
+
+
+
+  </form>
+
+
+
+
+<!--
+  <pre>
+    {{theForm | json}}
+  </pre>
+
+  -->
+
+
+
+
+
+  <div>
+    <br/><h3>Formulario</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Senha</th>
+          <th>sexo</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="formulario in formularios">
+          <td>{{ formulario.email }}</td>
+          <td>{{ formulario.name }}</td>
+          <td>{{ formulario.idade }}</td>
+          <td>{{ formulario.senha }}</td>
+          <td>{{ formulario.sex }}</td>
+          <td><button ng-click="editformulario(formulario)">Editar</button></td>
+          <td><button ng-click="deleteformulario(formulario)">Deletar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div>

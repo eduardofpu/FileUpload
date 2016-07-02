@@ -1,0 +1,36 @@
+<section>
+  <ul class="actions vertical">
+    <li ng-show="!authDetails.authenticated"><a href="#/login" class="button big fit">Login</a></li>
+    <li ng-show="authDetails.authenticated"><a ng-click="logout()" href="#/" class="button big fit">Logout</a></li>
+  </ul>
+</section>
+
+<ul class="links">
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN', 'ROLE_USER'])">
+    <a href="#/packagee">
+      <h3>Pacotes</h3>
+      <p>Lista de pacotes.</p>
+    </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])">
+    <a href="#/user">
+      <h3>Usuários</h3>
+      <p>Usuários do sistema.</p>
+    </a>
+  </li>
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])">
+    <a href="#/jasper">
+      <h3>Relatório</h3>
+      <p>Relatório de Usuários do sistema.</p>
+    </a>
+  </li>
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])">
+    <a href="#/validar">
+      <h3>Formulário</h3>
+      <p>FormValidation.</p>
+    </a>
+  </li>
+
+</ul>
